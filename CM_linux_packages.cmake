@@ -1,9 +1,7 @@
 # determine the version number from the #define in libyuv/version.h
-EXECUTE_PROCESS (
-	COMMAND grep --perl-regex --only-matching "(?<=LIBYUV_VERSION )[0-9]+" include/libyuv/version.h
-	WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-	OUTPUT_VARIABLE YUV_VERSION_NUMBER
-	OUTPUT_STRIP_TRAILING_WHITESPACE )
+FILE (STRINGS include/libyuv/version.h YUV_VERSION_NUMBER REGEX "^#define[ ]+LIBYUV_VERSION [0-9]+")
+STRING (REGEX MATCH "[0-9]+" YUV_VERSION_NUMBER ${YUV_VERSION_NUMBER})
+message ("YUV_VERSION_NUMBER: " ${YUV_VERSION_NUMBER})
 SET ( YUV_VER_MAJOR 0 )
 SET ( YUV_VER_MINOR 0 )
 SET ( YUV_VER_PATCH ${YUV_VERSION_NUMBER} )
