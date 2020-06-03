@@ -6,6 +6,12 @@ PROJECT ( YUV C CXX )	# "C" is required even for C++ projects
 CMAKE_MINIMUM_REQUIRED( VERSION 2.8 )
 OPTION( TEST "Built unit tests" OFF )
 
+# gnucc definitions
+if (CMAKE_COMPILER_IS_GNUCC)
+    add_definitions(-Wno-attributes)
+    add_definitions(-fPIC)
+endif()
+
 SET ( ly_base_dir	${PROJECT_SOURCE_DIR} )
 SET ( ly_src_dir	${ly_base_dir}/source )
 SET ( ly_inc_dir	${ly_base_dir}/include )
