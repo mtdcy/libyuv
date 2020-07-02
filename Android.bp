@@ -69,6 +69,7 @@ cc_library {
 // with libyuv (b/37646797)
 cc_library_static {
     name: "libyuv_static",
+    vendor_available: true,
     whole_static_libs: ["libyuv"],
 }
 
@@ -100,6 +101,15 @@ cc_test {
     gtest: false,
     srcs: [
         "util/compare.cc",
+    ],
+    static_libs: ["libyuv"],
+}
+
+cc_test {
+    name: "i444tonv12_eg",
+    gtest: false,
+    srcs: [
+        "util/i444tonv12_eg.cc",
     ],
     static_libs: ["libyuv"],
 }
